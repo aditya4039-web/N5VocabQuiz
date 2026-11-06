@@ -44,12 +44,9 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         web.addJavascriptInterface(Bridge(), "AndroidTTS")
         web.loadUrl("https://appassets.androidplatform.net/assets/index.html")
 
-        // Back button: close an open flashcard first, otherwise leave the app.
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 web.evaluateJavascript(
-                    "(function(){var o=document.getElementById('fc');" +
-                        "if(o&&o.style.display==='flex'){o.style.display='none';return 1}return 0})()"
                 ) { result -> if (result != "1") finish() }
             }
         })

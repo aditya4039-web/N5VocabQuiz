@@ -522,17 +522,14 @@ function setup(){
   ${cd("Questions per round","",sg("N",N,[[10,"10"],[20,"20"],[30,"30"]]))}
   <button class="pri" id="st">Start smart review</button>`;
   document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{S[b.dataset.k](b.dataset.v);save();setup()});
-  $("#bk").onclick=home;$("#st").onclick=review;scrollTo(0,y);
 }
 function settings(){
   nav(true,"st");
   const sw=(id,t,on)=>`<label class="sw"><span>${t}</span><input type="checkbox" id="${id}" ${on?"checked":""}></label>`;
   app.innerHTML=`<h1>Settings</h1>
-  <div class="card"><div class="ct">Display &amp; audio</div>${sw("ro","Show kana reading under words",showR)}${sw("fg","Show furigana in example sentences",fg)}${sw("au","Play audio after each answer",aud)}</div>
   <div class="card"><div class="ct">Your progress</div><button class="sec" id="bk">Backup or restore</button><button class="lnk" id="cl">Reset all progress</button></div>
   <div class="card"><div class="ct">How it works</div><div class="mu">Right answer +1, wrong −0.5, timeout −0.25. A word you get right comes back after 1, 3, 7, 14, then 30 days. A missed word comes back in minutes, and again later in the same round. Mastered means 4 correct in a row.</div></div>`;
   $("#ro").onchange=e=>{showR=e.target.checked;save()};
-  $("#au").onchange=e=>{aud=e.target.checked;save()};
   $("#fg").onchange=e=>{fg=e.target.checked;save()};
   $("#bk").onclick=backup;
   $("#cl").onclick=e=>{const b=e.target;if(b.dataset.c){D={};ST={days:{}};save();settings()}else{b.dataset.c=1;b.textContent="Tap again to erase everything"}};
@@ -545,7 +542,6 @@ function review(){
   const rest=p.filter(w=>D[w.id]&&D[w.id].d>t).sort((a,b)=>D[a.id].d-D[b.id].d);
   start([...du,...nw,...rest].slice(0,N));
 }
-function start(p){q=sh(p).slice(0,N).map(w=>({w,f:FK[Math.random()*3|0],vf:Math.random()<.5?"masu":"te"}));tot=q.length;i=0;sc=0;miss=[];ask()}
 function ask(){
   clearInterval(tm);locked=false;paused=false;
   const c=q[i],w=c.w,tp=inp=="type";let pr,opts,ans,show,sp,lab;
@@ -573,7 +569,6 @@ function ask(){
   <div id="ob">${tp?`<input class="ti" id="ti" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${w.t=="v"&&mode!="cj"?"ます-form て-form (kana)":"type in kana"}"><button class="pri" id="ck">Check</button>`:opts.map((o,n)=>`<button class="opt">${n+1}. ${o.h}</button>`).join("")}</div><div id="nx"></div>`;
   if(tp){$("#ti").focus();$("#ck").onclick=sub;$("#ti").onkeydown=e=>{if(e.key=="Enter"){e.stopPropagation();sub()}}}
   else document.querySelectorAll(".opt").forEach((b,n)=>b.onclick=()=>finish(opts[n].ok,false,n));
-  $("#qt").onclick=()=>{clearInterval(tm);home()};
   if(timed){left=secs;tick();$("#ps").onclick=()=>{if(locked)return;paused=!paused;$("#ps").textContent=paused?"Resume":"Pause";[$("#qb"),$("#ob")].forEach(e=>e.style.visibility=paused?"hidden":"");paused?clearInterval(tm):tick()}}
 }
 const tick=()=>{clearInterval(tm);tm=setInterval(()=>{left--;const t=$("#tm");if(t)t.textContent=left+"s";if(left<=0)finish(false,true)},1000)};
@@ -586,10 +581,7 @@ function finish(ok,soft,idx){
   rec(w,ok,soft);
   if(ok&&!c.rq)sc++;
   if(!ok&&!c.rq){miss.push(w);q.splice(Math.min(i+4,q.length),0,{w,f:c.f,vf:c.vf,rq:1})}
-  const e=D[w.id];
-  $("#nx").innerHTML=`<div class="mu" style="text-align:center;margin-top:12px">${soft?"Time's up · ":""}${!ok&&tp?"Answer: <b>"+show+"</b> · ":""}${lab} ${fm(e.s)} · review ${due(e)} ${spk(sp)}</div><button class="pri" id="n">${i+1<q.length?"Next":"See results"}</button>`;
   $("#n").onclick=next;
-  if(aud)say(sp);
 }
 function next(){i++;i<q.length?ask():done()}
 function done(){
@@ -618,7 +610,6 @@ function backup(){
   const m=t=>$("#msg").textContent=t;
   $("#cp").onclick=()=>{const t=$("#bk");t.select();try{navigator.clipboard.writeText(t.value).then(()=>m("Copied."),()=>m("Select the text and copy it manually."))}catch(e){m("Select the text and copy it manually.")}};
   $("#rr").onclick=()=>{try{const o=JSON.parse(atob($("#rs").value.trim()));if(!o.D)throw 0;D=o.D;ST=Object.assign({days:{}},o.ST);save();m("Restored "+Object.keys(D).length+" words.")}catch(e){m("That code didn't work.")}};
-  $("#hm").onclick=settings;
 }
 function card(id){
   const w=W[id],e=D[id],x=EX[w.k],c=w.t=="v"?conj(w):null,ck=w.t=="v"?conj(w,true):null;
