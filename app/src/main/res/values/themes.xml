@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.N5Quiz" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>

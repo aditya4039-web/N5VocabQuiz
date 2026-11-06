@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JLPT N5 Vocab Quiz</title>
+<style>
+:root{--bg:#faf8f5;--card:#fff;--tx:#1d1b19;--mu:#6b665f;--bd:#e3ded6;--ac:#c2410c;--acb:#ffedd5;--ok:#15803d;--okb:#dcfce7;--no:#b91c1c;--nob:#fee2e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171513;--card:#211e1b;--tx:#f1ede6;--mu:#a39d93;--bd:#37332e;--ac:#fb923c;--acb:#3a2414;--ok:#4ade80;--okb:#12301d;--no:#f87171;--nob:#3b1717;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171513;--card:#211e1b;--tx:#f1ede6;--mu:#a39d93;--bd:#37332e;--ac:#fb923c;--acb:#3a2414;--ok:#4ade80;--okb:#12301d;--no:#f87171;--nob:#3b1717;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.4}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:22px;margin:8px 0 2px}
+.mu{color:var(--mu);font-size:14px;min-height:20px}
+.seg{display:flex;gap:8px;margin:20px 0 12px}
+.seg button{flex:1}
+button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;cursor:pointer}
+button.on{border-color:var(--ac);background:var(--acb);font-weight:600}
+button.pri{width:100%;background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600;margin-top:12px}
+:root[data-theme="dark"] button.pri{color:#1a1208}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.pri{color:#1a1208}}
+button.sec{width:100%;margin-top:10px}
+button.lnk{background:none;border:0;color:var(--mu);text-decoration:underline;margin-top:6px;padding:6px}
+.chk{display:flex;gap:8px;align-items:center;color:var(--mu);font-size:14px}
+.bar{height:6px;background:var(--bd);border-radius:3px;overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;background:var(--ac)}
+.top{display:flex;justify-content:space-between;font-size:13px;color:var(--mu)}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:28px 16px;text-align:center;margin:16px 0}
+.jp{font-size:44px;font-weight:600}
+.en{font-size:24px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin-top:10px;font-size:16px}
+.opt small,.opt em{color:var(--mu);font-style:normal}
+.opt.ok{border-color:var(--ok);background:var(--okb)}
+.opt.no{border-color:var(--no);background:var(--nob)}
+.score{font-size:48px;font-weight:700;text-align:center;margin:16px 0 4px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd);font-size:15px}
+.row span:last-child{color:var(--mu);text-align:right}
+.seg{margin:0 0 4px}.seg button{padding:10px 6px;font-size:14px}
+.lb{font-size:12px;color:var(--mu);margin:14px 0 4px}
+.fm{margin-top:8px;font-weight:600;color:var(--ac);font-size:20px}
+.ti{width:100%;font:inherit;font-size:18px;padding:12px;border:1px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx)}
+.ti.ok{border-color:var(--ok);background:var(--okb)}.ti.no{border-color:var(--no);background:var(--nob)}
+.sp{padding:2px 8px;border-radius:8px;margin-left:6px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.cards div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 4px;text-align:center}
+.cards b{display:block;font-size:20px}.cards small,.spark small{display:block;font-size:11px;color:var(--mu)}
+.spark{display:flex;gap:6px;align-items:flex-end;height:96px;margin:6px 0}
+.spark div{flex:1;text-align:center}.spark i{display:block;background:var(--ac);border-radius:3px 3px 0 0}
+textarea{width:100%;min-height:90px;font:12px/1.3 monospace;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:8px;margin-top:8px;word-break:break-all}
+main{padding-bottom:96px}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.hd h1{margin:0}
+.stk{text-align:center;font-weight:700;font-size:20px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:6px 12px}
+.stk small{display:block;font-size:10px;color:var(--mu);font-weight:400}
+.hero{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:22px 18px;margin:16px 0}
+.big{font-size:44px;font-weight:700;line-height:1.1}
+.chip{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;margin-top:12px;padding:10px 12px;font-size:13px;color:var(--mu);text-align:left;border-radius:12px;background:var(--bg)}
+.chip b{color:var(--ac);font-weight:600}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:block;text-align:left;padding:16px 14px}
+.tile small{display:block;color:var(--mu);margin-top:4px;font-size:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:12px 0}
+.ct{font-weight:600;margin-bottom:4px}
+.card .seg{margin-top:10px}
+.sw{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}
+.sw input{width:22px;height:22px;accent-color:var(--ac)}
+.qrow{display:flex;justify-content:space-between}
+#nav{position:fixed;left:0;right:0;bottom:0;display:none;background:var(--card);border-top:1px solid var(--bd);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+#nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:0;background:none;font-size:20px;padding:6px;color:var(--mu)}
+#nav button span{font-size:11px}
+#nav button.on{color:var(--ac);font-weight:600}
+svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.row[data-w]{cursor:pointer}
+#fc{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:20}
+.fcb{position:relative;background:var(--card);color:var(--tx);border-radius:20px;padding:30px 20px 20px;max-width:420px;width:100%;text-align:center;max-height:90%;overflow:auto}
+.x{position:absolute;top:8px;right:8px;border:0;background:none;padding:8px;color:var(--mu)}
+.forms{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.forms span{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:6px 10px}
+.ex{margin-top:16px;padding-top:14px;border-top:1px solid var(--bd);text-align:left}
+.exj{font-size:18px;margin:4px 0}
+rt{font-size:.5em;color:var(--mu);font-weight:400}
+.exj{line-height:2.2}
+.forms small{display:block;font-size:11px;color:var(--mu)}
+</style></head><body><main id="app"></main><nav id="nav"><button data-t="home"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 11l8-7 8 7v9H4z"/></svg><span>Home</span></button><button data-t="pg"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 20V11M12 20V5M18 20v-6"/></svg><span>Progress</span></button><button data-t="st"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 8h10M18 8h2M4 16h2M10 16h10"/><circle cx="16" cy="8" r="2"/><circle cx="8" cy="16" r="2"/></svg><span>Settings</span></button></nav>
+<script>
+const RAW=`浴びる|あびる|abiru|to bathe, to shower
+上げる|あげる|ageru|to raise; to give
+開ける|あける|akeru|to open (a door); to unwrap
+開く|あく|aku|to open (doors, business)
+洗う|あらう|arau|to wash
+ある|ある|aru|to be, to have (things)
+歩く|あるく|aruku|to walk
+遊ぶ|あそぶ|asobu|to play; to enjoy oneself
+会う|あう|au|to meet
+勉強|べんきょう|benkyou|study
+違う|ちがう|chigau|to differ
+出す|だす|dasu|to take out; to put out
+出かける|でかける|dekakeru|to go out; to leave
+電話|でんわ|denwa|telephone; phone call
+出る|でる|deru|to leave; to exit; to appear
+吹く|ふく|fuku|to blow (wind)
+降る|ふる|furu|to fall (rain, snow)
+入る|はいる|hairu|to enter
+始まる|はじまる|hajimaru|to begin
+履く|はく|haku|to wear (trousers, shoes)
+話す|はなす|hanasu|to speak; to talk
+晴れる|はれる|hareru|to be sunny
+貼る|はる|haru|to stick; to paste
+走る|はしる|hashiru|to run
+働く|はたらく|hataraku|to work
+引く|ひく|hiku|to pull
+弾く|ひく|hiku|to play (instrument)
+行く|いく|iku|to go
+入れる|いれる|ireru|to put in; to insert
+要る|いる|iru|to be needed
+居る|いる|iru|to be, to have (people/animals)
+言う|いう|iu|to say
+授業|じゅぎょう|jugyou|lesson; class
+帰る|かえる|kaeru|to go back; to return home
+返す|かえす|kaesu|to return something
+掛かる|かかる|kakaru|to take (time or money)
+掛ける|かける|kakeru|to hang up; to make (a call)
+書く|かく|kaku|to write; to draw
+借りる|かりる|kariru|to borrow
+貸す|かす|kasu|to lend
+買う|かう|kau|to buy
+結婚|けっこん|kekkon|marriage
+消す|けす|kesu|to erase; to turn off
+消える|きえる|kieru|to disappear
+聞く|きく|kiku|to hear; to listen; to ask
+切る|きる|kiru|to cut
+着る|きる|kiru|to wear (clothes)
+困る|こまる|komaru|to be troubled
+コピー|コピー|kopii|copy; photocopy
+答える|こたえる|kotaeru|to answer
+曇る|くもる|kumoru|to become cloudy
+来る|くる|kuru|to come
+曲がる|まがる|magaru|to turn; to bend
+待つ|まつ|matsu|to wait
+磨く|みがく|migaku|to polish; to brush (teeth)
+見る|みる|miru|to see; to watch
+見せる|みせる|miseru|to show
+持つ|もつ|motsu|to hold
+鳴く|なく|naku|to chirp (animal noise)
+無くす|なくす|nakusu|to lose (something)
+並べる|ならべる|naraberu|to line up; to set up
+並ぶ|ならぶ|narabu|to stand in a line
+習う|ならう|narau|to learn (from a teacher)
+寝る|ねる|neru|to sleep; to go to bed
+登る|のぼる|noboru|to climb
+飲む|のむ|nomu|to drink
+乗る|のる|noru|to get on (train, bus)
+脱ぐ|ぬぐ|nugu|to take off clothes
+覚える|おぼえる|oboeru|to remember
+起きる|おきる|okiru|to get up; to wake up
+置く|おく|oku|to put; to place
+降りる|おりる|oriru|to get off
+教える|おしえる|oshieru|to teach
+押す|おす|osu|to push; to press
+終わる|おわる|owaru|to finish; to end
+泳ぐ|およぐ|oyogu|to swim
+練習|れんしゅう|renshuu|practice
+旅行|りょこう|ryokou|travel; trip
+料理|りょうり|ryouri|cuisine; cooking
+咲く|さく|saku|to bloom
+散歩|さんぽ|sanpo|walk; stroll
+差す|さす|sasu|to raise (an umbrella)
+洗濯|せんたく|sentaku|washing; laundry
+仕事|しごと|shigoto|work; job
+閉まる|しまる|shimaru|to close; to be closed
+閉める|しめる|shimeru|to close; to shut
+締める|しめる|shimeru|to tie; to fasten
+死ぬ|しぬ|shinu|to die
+知る|しる|shiru|to know
+質問|しつもん|shitsumon|question; inquiry
+掃除|そうじ|souji|to clean; to sweep
+住む|すむ|sumu|to live in; to reside
+吸う|すう|suu|to smoke; to suck
+座る|すわる|suwaru|to sit
+食べる|たべる|taberu|to eat
+頼む|たのむ|tanomu|to ask; to request
+立つ|たつ|tatsu|to stand up
+テスト|テスト|tesuto|test; exam
+飛ぶ|とぶ|tobu|to fly; to hop
+止まる|とまる|tomaru|to stop
+取る|とる|toru|to take; to pick up
+撮る|とる|toru|to take a photo
+疲れる|つかれる|tsukareru|to get tired
+使う|つかう|tsukau|to use
+つける|つける|tsukeru|to turn on
+付ける|つける|tsukeru|to attach; to apply
+着く|つく|tsuku|to arrive at
+作る|つくる|tsukuru|to make
+勤める|つとめる|tsutomeru|to work for someone
+生まれる|うまれる|umareru|to be born
+売る|うる|uru|to sell
+歌う|うたう|utau|to sing
+分かる|わかる|wakaru|to understand
+忘れる|わすれる|wasureru|to forget
+渡る|わたる|wataru|to go across
+渡す|わたす|watasu|to hand over
+やる|やる|yaru|to do
+休む|やすむ|yasumu|to rest; to take a day off
+呼ぶ|よぶ|yobu|to call out; to invite
+読む|よむ|yomu|to read`;
+const RAW2=`新しい|あたらしい|atarashii|new
+古い|ふるい|furui|old (not for people)
+大きい|おおきい|ookii|big
+小さい|ちいさい|chiisai|small
+高い|たかい|takai|tall; expensive; high
+安い|やすい|yasui|cheap
+低い|ひくい|hikui|low; short (height)
+長い|ながい|nagai|long
+短い|みじかい|mijikai|short (length)
+多い|おおい|ooi|many; much
+少ない|すくない|sukunai|few; little
+重い|おもい|omoi|heavy
+軽い|かるい|karui|light (weight)
+暑い|あつい|atsui|hot (weather)
+寒い|さむい|samui|cold (weather)
+熱い|あつい|atsui|hot (to the touch)
+冷たい|つめたい|tsumetai|cold (to the touch)
+暖かい|あたたかい|atatakai|warm
+涼しい|すずしい|suzushii|pleasantly cool
+早い|はやい|hayai|early
+速い|はやい|hayai|fast
+遅い|おそい|osoi|slow; late
+近い|ちかい|chikai|near
+遠い|とおい|tooi|far
+広い|ひろい|hiroi|wide; spacious
+狭い|せまい|semai|narrow; cramped
+明るい|あかるい|akarui|bright
+暗い|くらい|kurai|dark
+強い|つよい|tsuyoi|strong
+弱い|よわい|yowai|weak
+良い|いい|ii|good
+悪い|わるい|warui|bad
+美味しい|おいしい|oishii|delicious
+忙しい|いそがしい|isogashii|busy
+楽しい|たのしい|tanoshii|fun; enjoyable
+面白い|おもしろい|omoshiroi|interesting; funny
+難しい|むずかしい|muzukashii|difficult
+易しい|やさしい|yasashii|easy
+可愛い|かわいい|kawaii|cute
+白い|しろい|shiroi|white
+黒い|くろい|kuroi|black
+赤い|あかい|akai|red
+青い|あおい|aoi|blue
+黄色い|きいろい|kiiroi|yellow
+甘い|あまい|amai|sweet
+若い|わかい|wakai|young
+元気|げんき|genki|healthy; energetic (na-adj.)
+きれい|きれい|kirei|pretty; clean (na-adj.)
+静か|しずか|shizuka|quiet (na-adj.)
+賑やか|にぎやか|nigiyaka|lively (na-adj.)
+有名|ゆうめい|yuumei|famous (na-adj.)
+親切|しんせつ|shinsetsu|kind (na-adj.)
+好き|すき|suki|to like (na-adj.)
+嫌い|きらい|kirai|to dislike (na-adj.)
+上手|じょうず|jouzu|skilled (na-adj.)
+下手|へた|heta|unskilled (na-adj.)
+便利|べんり|benri|convenient (na-adj.)
+暇|ひま|hima|free time (na-adj.)
+大変|たいへん|taihen|tough; serious (na-adj.)`;
+const RAW3=`浴びる|毎朝{まいあさ}シャワーを浴{あ}びます。|I take a shower every morning.
+上げる|手を上げてください。|Please raise your hand.
+開ける|窓{まど}を開{あ}けてください。|Please open the window.
+開く|店は九時に開{あ}きます。|The shop opens at nine.
+洗う|ごはんの前に手を洗{あら}います。|I wash my hands before eating.
+ある|机{つくえ}の上に本があります。|There is a book on the desk.
+歩く|学校まで歩{ある}いて行きます。|I walk to school.
+遊ぶ|日曜日に友だちと遊{あそ}びます。|I play with my friends on Sunday.
+会う|駅で田中さんに会いました。|I met Mr. Tanaka at the station.
+勉強|毎日日本語を勉強{べんきょう}します。|I study Japanese every day.
+違う|これは私のかばんと違{ちが}います。|This is different from my bag.
+出す|手紙{てがみ}を出します。|I mail a letter.
+出かける|今日は朝{あさ}九時に出かけます。|I go out at nine this morning.
+電話|母に電話をかけます。|I call my mother.
+出る|七時に家{いえ}を出ます。|I leave home at seven.
+吹く|今日は風{かぜ}が吹{ふ}いています。|The wind is blowing today.
+降る|昨日{きのう}は雨が降{ふ}りました。|It rained yesterday.
+入る|部屋{へや}に入ってください。|Please enter the room.
+始まる|授業{じゅぎょう}は九時に始{はじ}まります。|Class begins at nine.
+履く|くつを履{は}きます。|I put on my shoes.
+話す|先生と日本語で話します。|I talk with my teacher in Japanese.
+晴れる|明日{あした}は晴{は}れるでしょう。|It will probably be sunny tomorrow.
+貼る|壁{かべ}にポスターを貼{は}ります。|I put a poster on the wall.
+走る|公園{こうえん}で毎朝{まいあさ}走{はし}ります。|I run in the park every morning.
+働く|父は銀行{ぎんこう}で働{はたら}いています。|My father works at a bank.
+引く|ドアを引{ひ}いてください。|Please pull the door.
+弾く|妹はピアノを弾{ひ}きます。|My younger sister plays the piano.
+行く|あした東京{とうきょう}へ行きます。|I am going to Tokyo tomorrow.
+入れる|コーヒーに砂糖{さとう}を入れます。|I put sugar in my coffee.
+要る|パスポートが要{い}ります。|I need a passport.
+居る|犬{いぬ}が庭{にわ}にいます。|The dog is in the garden.
+言う|先生は「おはよう」と言いました。|The teacher said "good morning."
+授業|今日の授業{じゅぎょう}は十時に終{お}わります。|Today's class ends at ten.
+帰る|六時に家{いえ}へ帰{かえ}ります。|I go home at six.
+返す|図書館{としょかん}に本を返{かえ}します。|I return the book to the library.
+掛かる|駅まで十分かかります。|It takes ten minutes to the station.
+掛ける|友だちに電話をかけます。|I call my friend.
+書く|名前をここに書いてください。|Please write your name here.
+借りる|友だちに本を借{か}りました。|I borrowed a book from a friend.
+貸す|私は弟にペンを貸{か}しました。|I lent a pen to my younger brother.
+買う|スーパーで牛乳{ぎゅうにゅう}を買います。|I buy milk at the supermarket.
+結婚|姉は来年結婚{けっこん}します。|My older sister will marry next year.
+消す|部屋{へや}を出る前に電気を消{け}します。|I turn off the light before leaving the room.
+消える|電気が消{き}えました。|The light went out.
+聞く|毎晩{まいばん}音楽{おんがく}を聞きます。|I listen to music every night.
+切る|ナイフでパンを切{き}ります。|I cut bread with a knife.
+着る|寒{さむ}いので、コートを着{き}ます。|It is cold, so I put on a coat.
+困る|お金がなくて困{こま}っています。|I am in trouble because I have no money.
+コピー|この紙{かみ}をコピーしてください。|Please copy this paper.
+答える|先生の質問{しつもん}に答{こた}えます。|I answer the teacher's question.
+曇る|今日は朝{あさ}から曇{くも}っています。|It has been cloudy since morning.
+来る|友だちが私の家{いえ}に来ます。|My friend comes to my house.
+曲がる|次{つぎ}の角{かど}を右に曲{ま}がってください。|Please turn right at the next corner.
+待つ|駅で友だちを待{ま}ちます。|I wait for my friend at the station.
+磨く|寝{ね}る前に歯{は}を磨{みが}きます。|I brush my teeth before bed.
+見る|夜{よる}にテレビを見ます。|I watch TV at night.
+見せる|パスポートを見せてください。|Please show your passport.
+持つ|かばんを持{も}ちましょうか。|Shall I carry your bag?
+鳴く|庭{にわ}で鳥{とり}が鳴{な}いています。|A bird is chirping in the garden.
+無くす|さいふを無{な}くしました。|I lost my wallet.
+並べる|テーブルにコップを並{なら}べます。|I set glasses out on the table.
+並ぶ|みんなバスの前に並{なら}んでいます。|Everyone is lined up in front of the bus.
+習う|私は中学で英語{えいご}を習{なら}いました。|I learned English in junior high.
+寝る|夜{よる}十一時に寝{ね}ます。|I go to bed at eleven at night.
+登る|去年{きょねん}、友だちと山に登{のぼ}りました。|Last year I climbed a mountain with friends.
+飲む|毎朝{まいあさ}、お茶{ちゃ}を飲みます。|I drink tea every morning.
+乗る|バスに乗{の}って学校へ行きます。|I take the bus to school.
+脱ぐ|家{いえ}に入る前にくつを脱{ぬ}ぎます。|I take off my shoes before entering the house.
+覚える|毎日、新しい言葉{ことば}を覚{おぼ}えます。|I memorize new words every day.
+起きる|毎朝{まいあさ}六時に起{お}きます。|I get up at six every morning.
+置く|机{つくえ}の上にかばんを置{お}きます。|I put my bag on the desk.
+降りる|次{つぎ}の駅で電車を降{お}ります。|I get off the train at the next station.
+教える|田中さんは私に日本語を教{おし}えます。|Mr. Tanaka teaches me Japanese.
+押す|このボタンを押{お}してください。|Please press this button.
+終わる|仕事{しごと}は五時に終{お}わります。|Work ends at five.
+泳ぐ|夏{なつ}は海{うみ}で泳{およ}ぎます。|I swim in the sea in summer.
+練習|毎日ピアノを練習{れんしゅう}します。|I practice the piano every day.
+旅行|夏{なつ}休みに京都{きょうと}へ旅行{りょこう}します。|I travel to Kyoto during summer vacation.
+料理|母は料理{りょうり}が上手{じょうず}です。|My mother is good at cooking.
+咲く|春{はる}に桜{さくら}の花が咲{さ}きます。|Cherry blossoms bloom in spring.
+散歩|夕方{ゆうがた}、犬{いぬ}と散歩{さんぽ}します。|I take a walk with my dog in the evening.
+差す|雨なので、かさを差{さ}します。|It's raining, so I put up an umbrella.
+洗濯|日曜日に洗濯{せんたく}をします。|I do the laundry on Sunday.
+仕事|父は毎日仕事{しごと}に行きます。|My father goes to work every day.
+閉まる|銀行{ぎんこう}は三時に閉{し}まります。|The bank closes at three.
+閉める|寒{さむ}いので、窓{まど}を閉{し}めます。|It is cold, so I close the window.
+締める|ネクタイを締{し}めます。|I tie my tie.
+死ぬ|魚{さかな}が死{し}にました。|The fish died.
+知る|あの人の名前を知{し}っていますか。|Do you know that person's name?
+質問|先生に質問{しつもん}があります。|I have a question for the teacher.
+掃除|土曜日に部屋{へや}を掃除{そうじ}します。|I clean my room on Saturday.
+住む|私は東京{とうきょう}に住{す}んでいます。|I live in Tokyo.
+吸う|ここでたばこを吸{す}わないでください。|Please don't smoke here.
+座る|いすに座{すわ}ってください。|Please sit on the chair.
+食べる|朝{あさ}ごはんにパンを食べます。|I eat bread for breakfast.
+頼む|レストランでコーヒーを頼{たの}みます。|I order coffee at the restaurant.
+立つ|先生が前に立っています。|The teacher is standing at the front.
+テスト|明日{あした}は日本語のテストがあります。|There is a Japanese test tomorrow.
+飛ぶ|鳥{とり}が空を飛{と}んでいます。|Birds are flying in the sky.
+止まる|電車は次{つぎ}の駅で止{と}まります。|The train stops at the next station.
+取る|テーブルの上の本を取{と}ってください。|Please take the book on the table.
+撮る|公園{こうえん}で写真{しゃしん}を撮{と}りました。|I took a photo in the park.
+疲れる|今日は仕事{しごと}で疲{つか}れました。|I got tired from work today.
+使う|私はこのペンをよく使{つか}います。|I often use this pen.
+つける|暗{くら}いので、電気をつけます。|It is dark, so I turn on the light.
+付ける|封筒{ふうとう}に切手{きって}を付{つ}けます。|I put a stamp on the envelope.
+着く|電車は九時に駅に着{つ}きます。|The train arrives at the station at nine.
+作る|母は毎日ごはんを作{つく}ります。|My mother cooks every day.
+勤める|兄は大きい会社に勤{つと}めています。|My older brother works for a big company.
+生まれる|私は東京{とうきょう}で生まれました。|I was born in Tokyo.
+売る|この店は花を売{う}っています。|This shop sells flowers.
+歌う|友だちと日本の歌{うた}を歌{うた}います。|I sing Japanese songs with my friends.
+分かる|日本語が少し分かります。|I understand a little Japanese.
+忘れる|かさを電車に忘{わす}れました。|I forgot my umbrella on the train.
+渡る|この橋{はし}を渡{わた}ってください。|Please cross this bridge.
+渡す|友だちにお金を渡{わた}します。|I hand money to my friend.
+やる|宿題{しゅくだい}をやってから、テレビを見ます。|I watch TV after doing my homework.
+休む|熱{ねつ}があるので、学校を休みます。|I have a fever, so I'll take the day off school.
+呼ぶ|友だちを家{いえ}に呼{よ}びます。|I invite my friend to my house.
+読む|毎晩{まいばん}、本を読みます。|I read a book every night.
+新しい|新しいくつを買いました。|I bought new shoes.
+古い|この家{いえ}はとても古いです。|This house is very old.
+大きい|あの木は大きいです。|That tree is big.
+小さい|私の部屋{へや}は小さいです。|My room is small.
+高い|この時計{とけい}は高いです。|This watch is expensive.
+安い|あの店のパンは安いです。|The bread at that shop is cheap.
+低い|この机{つくえ}は低{ひく}いです。|This desk is low.
+長い|この川は長いです。|This river is long.
+短い|私の髪{かみ}は短{みじか}いです。|My hair is short.
+多い|東京{とうきょう}は人が多いです。|Tokyo has many people.
+少ない|今月はお金が少ないです。|I have little money this month.
+重い|このかばんは重{おも}いです。|This bag is heavy.
+軽い|この本は軽{かる}いです。|This book is light.
+暑い|夏{なつ}は暑{あつ}いです。|Summer is hot.
+寒い|冬{ふゆ}は寒{さむ}いです。|Winter is cold.
+熱い|このお茶{ちゃ}は熱{あつ}いです。|This tea is hot.
+冷たい|冷{つめ}たい水を飲みます。|I drink cold water.
+暖かい|今日は暖{あたた}かいです。|It is warm today.
+涼しい|秋{あき}は涼{すず}しいです。|Autumn is cool.
+早い|朝{あさ}は早{はや}く起{お}きます。|I get up early in the morning.
+速い|新幹線{しんかんせん}は速{はや}いです。|The Shinkansen is fast.
+遅い|バスが遅{おそ}いです。|The bus is late.
+近い|駅は家{いえ}から近{ちか}いです。|The station is close to my house.
+遠い|学校は家{いえ}から遠{とお}いです。|The school is far from my house.
+広い|この部屋{へや}は広{ひろ}いです。|This room is spacious.
+狭い|私の家{いえ}は狭{せま}いです。|My house is cramped.
+明るい|この部屋{へや}は明{あか}るいです。|This room is bright.
+暗い|夜{よる}の道は暗{くら}いです。|The road is dark at night.
+強い|あの人はとても強{つよ}いです。|That person is very strong.
+弱い|私は体{からだ}が弱{よわ}いです。|My body is weak.
+良い|今日はいい天気です。|The weather is nice today.
+悪い|昨日{きのう}は天気が悪{わる}かったです。|The weather was bad yesterday.
+美味しい|この料理{りょうり}はおいしいです。|This dish is delicious.
+忙しい|今週は忙{いそが}しいです。|I am busy this week.
+楽しい|旅行{りょこう}は楽{たの}しかったです。|The trip was fun.
+面白い|この本は面白{おもしろ}いです。|This book is interesting.
+難しい|日本語は難{むずか}しいです。|Japanese is difficult.
+易しい|このテストは易{やさ}しいです。|This test is easy.
+可愛い|あの犬{いぬ}は可愛{かわい}いです。|That dog is cute.
+白い|白いシャツを着{き}ます。|I wear a white shirt.
+黒い|黒{くろ}いかばんを買いました。|I bought a black bag.
+赤い|赤い花が咲{さ}いています。|Red flowers are blooming.
+青い|空は青いです。|The sky is blue.
+黄色い|黄色{きいろ}い花が好{す}きです。|I like yellow flowers.
+甘い|このケーキは甘{あま}いです。|This cake is sweet.
+若い|私の先生は若{わか}いです。|My teacher is young.
+元気|祖母{そぼ}は元気{げんき}です。|My grandmother is healthy.
+きれい|この町{まち}はきれいです。|This town is pretty and clean.
+静か|図書館{としょかん}は静{しず}かです。|The library is quiet.
+賑やか|駅の前は賑{にぎ}やかです。|The area in front of the station is lively.
+有名|京都{きょうと}は有名{ゆうめい}な町{まち}です。|Kyoto is a famous city.
+親切|田中さんは親切{しんせつ}です。|Mr. Tanaka is kind.
+好き|私は音楽{おんがく}が好{す}きです。|I like music.
+嫌い|私は魚{さかな}が嫌{きら}いです。|I dislike fish.
+上手|姉は絵{え}が上手{じょうず}です。|My older sister is good at drawing.
+下手|私は歌{うた}が下手{へた}です。|I am bad at singing.
+便利|この辞書{じしょ}は便利{べんり}です。|This dictionary is convenient.
+暇|今日は暇{ひま}です。|I am free today.
+大変|仕事{しごと}が大変{たいへん}です。|Work is tough.`;
+const EX={};RAW3.split("\n").forEach(l=>{const[k,j,e]=l.split("|");EX[k]=[j,e]});
+const NOUN=new Set("勉強 電話 授業 結婚 コピー 練習 旅行 料理 散歩 洗濯 仕事 質問 掃除 テスト".split(" "));
+const W=(RAW+"\n"+RAW2).trim().split("\n").map((l,i)=>{const[k,h,r,m]=l.split("|");return{id:i,k,h,r,m,t:i>=120?"a":NOUN.has(k)?"n":"v"}});
+let D={},ST={days:{}};
+try{const o=JSON.parse(localStorage.getItem("n5v3")||"null");if(o){D=o.D||{};ST=Object.assign({days:{}},o.ST)}else{const m=JSON.parse(localStorage.getItem("n5ms")||"{}");for(const k in m)D[k]={s:m[k],b:0,d:0,n:0}}}catch(e){}
+let{mode,inp,deck,showR,aud,N,timed,secs,fg}=Object.assign({mode:"jp",inp:"choose",deck:"pdf",showR:true,aud:false,N:20,timed:false,secs:10,fg:true},ST.pf);
+let q=[],i=0,sc=0,tot=0,miss=[],locked=false,paused=false,tm=null,left=0,Q=null;
+const save=()=>{try{localStorage.setItem("n5v3",JSON.stringify({D,ST:Object.assign({},ST,{pf:{mode,inp,deck,showR,aud,N,timed,secs,fg}})}))}catch(e){}};
+const $=s=>document.querySelector(s),app=$("#app");
+const sh=a=>{a=a.slice();for(let j=a.length-1;j>0;j--){const x=Math.floor(Math.random()*(j+1));[a[j],a[x]]=[a[x],a[j]]}return a};
+const rd=w=>showR&&w.h!=w.k?w.h:"";
+const pl=s=>s.replace(/\{[^}]*\}/g,"");
+const fur=s=>fg?s.replace(/([\u4e00-\u9fff]+)\{([^}]*)\}/g,"<ruby>$1<rt>$2</rt></ruby>"):pl(s);
+const fm=n=>(n>0?"+":"")+(+n.toFixed(2));
+const norm=s=>s.trim().toLowerCase().replace(/[\s\/・、,。]+/g,"");
+const say=t=>{try{if(window.AndroidTTS){AndroidTTS.speak(t);return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="ja-JP";u.rate=.85;speechSynthesis.speak(u)}catch(e){}};
+const IC={sp:'<svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 010 6"/></svg>',x:'<svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18"/></svg>'};
+const spk=t=>`<button class="sp" data-say="${t}" aria-label="Play audio">${IC.sp}</button>`;
+const DAY=864e5,IV=[0,DAY,3*DAY,7*DAY,14*DAY,30*DAY];
+const due=e=>{const d=e.d-Date.now();return d<=0?"due now":d<36e5?"in "+Math.ceil(d/6e4)+" min":d<DAY?"in "+Math.round(d/36e5)+" h":"in "+Math.round(d/DAY)+" d"};
+const src=()=>mode=="cj"?W.filter(w=>w.t=="v"):W.filter(w=>deck=="all"||(deck=="pdf"?w.id<120:w.t=="a"));
+const sc0=w=>(D[w.id]||{}).s||0;
+const streak=()=>{const g=k=>ST.days[new Date(Date.now()-k*DAY).toLocaleDateString("sv")];let n=0,k=g(0)?0:1;while(g(k)&&g(k)[0]>0){n++;k++}return n};
+/* conjugation */
+const U="うくぐすつぬぶむる",I="いきぎしちにびみり",A="わかがさたなばまら";
+const IRR=new Set("帰る 入る 走る 知る 切る 要る".split(" "));
+const FN={masu:"ます-form",te:"て-form",nai:"ない-form"},FK=["masu","te","nai"];
+function conj(w,K){
+  const h=w.h,x=K?w.k:w.h,l=x.slice(-1),s=x.slice(0,-1);
+  if(h=="くる")return K?{masu:"来ます",te:"来て",nai:"来ない"}:{masu:"きます",te:"きて",nai:"こない"};
+  if(l=="る"&&!IRR.has(w.k)&&"いきしちにひみりぎじびぴえけせてねへめれげぜでべぺ".includes(h.slice(-2,-1)))return{masu:s+"ます",te:s+"て",nai:s+"ない"};
+  const n=U.indexOf(l);let te;
+  if("うつる".includes(l))te=s+"って";else if("むぶぬ".includes(l))te=s+"んで";else if(l=="く")te=s+(w.k=="行く"?"って":"いて");else if(l=="ぐ")te=s+"いで";else te=s+"して";
+  return{masu:s+I[n]+"ます",te,nai:w.k=="ある"?"ない":s+A[n]+"ない"};
+}
+const disp=x=>{if(x.t!="v")return{k:x.k,h:x.h,a:[x.h,x.k]};const a=conj(x),b=conj(x,true);return{k:b.masu+" / "+b.te,h:a.masu+" / "+a.te,a:[a.masu+a.te,b.masu+b.te],s:a.masu+"、"+a.te}};
+function wrongs(w,f){
+  const h=w.h,l=h.slice(-1),s=h.slice(0,-1),n=U.indexOf(l),c=conj(w)[f];
+  const L=f=="te"?["って","んで","いて","して","いで"].map(x=>s+x):f=="masu"?[s+"ます",h+"ます",s+(I[n]||"")+"ます"]:[s+"ない",h+"ない",s+(A[n]||"")+"ない"];
+  return[...new Set(L)].filter(x=>x!=c);
+}
+/* progress */
+function rec(w,ok,soft){
+  const e=D[w.id]||(D[w.id]={s:0,b:0,d:0,n:0}),t=Date.now();
+  if(ok){e.s++;e.b=Math.min(e.b+1,5);e.d=t+IV[e.b]}else if(soft){e.s-=.25;e.d=t+6e5}else{e.s-=.5;e.b=0;e.d=t+3e5}
+  e.n=(e.n||0)+1;
+  const k=new Date().toLocaleDateString("sv"),x=ST.days[k]||(ST.days[k]=[0,0]);x[0]++;if(ok)x[1]++;
+  save();
+}
+/* screens */
+const S={mode:v=>mode=v,inp:v=>inp=v,deck:v=>deck=v,timed:v=>timed=v=="1",secs:v=>secs=+v,N:v=>N=+v};
+const nv=$("#nav");
+function nav(on,a){nv.style.display=on?"flex":"none";nv.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.t==a))}
+nv.onclick=e=>{const b=e.target.closest("button");if(b)({home,pg:progress,st:settings})[b.dataset.t]()};
+const NM={jp:"日本語 → English",en:"English → 日本語",cj:"Conjugation"},DK={pdf:"PDF list",a:"Adjectives",all:"All words"};
+function home(){
+  clearInterval(tm);save();nav(true,"home");
+  const t=Date.now(),p=src(),dn=p.filter(w=>D[w.id]&&D[w.id].d<=t).length,nn=p.filter(w=>!D[w.id]).length;
+  app.innerHTML=`<div class="hd"><div><h1>JLPT N5</h1><div class="mu">Vocabulary trainer</div></div><div class="stk">${streak()}<small>day streak</small></div></div>
+  <div class="hero"><div class="mu">Today</div><div class="big">${dn} due</div><div class="mu">${nn} new · ${Object.keys(D).length} practiced so far</div>
+  <button class="pri" id="rv">Start smart review</button>
+  <button class="chip" id="chg"><span>${[NM[mode],inp=="type"?"Typing":"Choosing",mode=="cj"?"Verbs":DK[deck],timed?secs+"s timer":"Untimed",N+" questions"].join(" · ")}</span><b>Change</b></button></div>
+  <div class="lb">More ways to practise</div>
+  <div class="tiles"><button class="tile" id="wk"><b>Weakest words</b><small>Your ${N} lowest scores</small></button><button class="tile" id="go"><b>Random round</b><small>Any words, no schedule</small></button></div>`;
+  $("#rv").onclick=review;$("#chg").onclick=setup;$("#go").onclick=()=>start(src());
+  $("#wk").onclick=()=>start(sh(src()).sort((a,b)=>sc0(a)-sc0(b)).slice(0,N));
+  scrollTo(0,0);
+}
+function setup(){
+  const y=scrollY;nav(false);
+  const sg=(k,cur,items)=>`<div class="seg">${items.map(([v,l])=>`<button data-k="${k}" data-v="${v}" class="${cur==v?"on":""}">${l}</button>`).join("")}</div>`;
+  const cd=(t,h,b)=>`<div class="card"><div class="ct">${t}</div>${h?`<div class="mu">${h}</div>`:""}${b}</div>`;
+  const H={jp:"See the Japanese, pick the meaning.",en:"See the meaning, pick the Japanese.",cj:"Turn verbs into ます, て and ない forms."};
+  app.innerHTML=`<div class="hd"><button class="lnk" id="bk">← Back</button><h1 style="font-size:18px">Customize round</h1><span style="width:60px"></span></div>
+  ${cd("Quiz type",H[mode],sg("mode",mode,[["jp","日本語 → EN"],["en","EN → 日本語"],["cj","Conjugation"]]))}
+  ${cd("How to answer",inp=="type"?"Type the reading in kana. For verbs, type the ます form, then the て form.":"Pick from four options.",sg("inp",inp,[["choose","Choosing"],["type","Typing"]]))}
+  ${mode=="cj"?"":cd("Word list","",sg("deck",deck,[["pdf","PDF list"],["a","Adjectives"],["all","Both"]]))}
+  ${cd("Timer",timed?"Seconds per question. You can pause during a round.":"No time limit.",sg("timed",timed?1:0,[[0,"Untimed"],[1,"Timed"]])+(timed?sg("secs",secs,[[5,"5 sec"],[10,"10 sec"],[15,"15 sec"]]):""))}
+  ${cd("Questions per round","",sg("N",N,[[10,"10"],[20,"20"],[30,"30"]]))}
+  <button class="pri" id="st">Start smart review</button>`;
+  document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{S[b.dataset.k](b.dataset.v);save();setup()});
+  $("#bk").onclick=home;$("#st").onclick=review;scrollTo(0,y);
+}
+function settings(){
+  nav(true,"st");
+  const sw=(id,t,on)=>`<label class="sw"><span>${t}</span><input type="checkbox" id="${id}" ${on?"checked":""}></label>`;
+  app.innerHTML=`<h1>Settings</h1>
+  <div class="card"><div class="ct">Display &amp; audio</div>${sw("ro","Show kana reading under words",showR)}${sw("fg","Show furigana in example sentences",fg)}${sw("au","Play audio after each answer",aud)}</div>
+  <div class="card"><div class="ct">Your progress</div><button class="sec" id="bk">Backup or restore</button><button class="lnk" id="cl">Reset all progress</button></div>
+  <div class="card"><div class="ct">How it works</div><div class="mu">Right answer +1, wrong −0.5, timeout −0.25. A word you get right comes back after 1, 3, 7, 14, then 30 days. A missed word comes back in minutes, and again later in the same round. Mastered means 4 correct in a row.</div></div>`;
+  $("#ro").onchange=e=>{showR=e.target.checked;save()};
+  $("#au").onchange=e=>{aud=e.target.checked;save()};
+  $("#fg").onchange=e=>{fg=e.target.checked;save()};
+  $("#bk").onclick=backup;
+  $("#cl").onclick=e=>{const b=e.target;if(b.dataset.c){D={};ST={days:{}};save();settings()}else{b.dataset.c=1;b.textContent="Tap again to erase everything"}};
+  scrollTo(0,0);
+}
+function review(){
+  const t=Date.now(),p=src();
+  const du=p.filter(w=>D[w.id]&&D[w.id].d<=t).sort((a,b)=>sc0(a)-sc0(b));
+  const nw=sh(p.filter(w=>!D[w.id]));
+  const rest=p.filter(w=>D[w.id]&&D[w.id].d>t).sort((a,b)=>D[a.id].d-D[b.id].d);
+  start([...du,...nw,...rest].slice(0,N));
+}
+function start(p){q=sh(p).slice(0,N).map(w=>({w,f:FK[Math.random()*3|0],vf:Math.random()<.5?"masu":"te"}));tot=q.length;i=0;sc=0;miss=[];ask()}
+function ask(){
+  clearInterval(tm);locked=false;paused=false;
+  const c=q[i],w=c.w,tp=inp=="type";let pr,opts,ans,show,sp,lab;
+  if(mode=="cj"){
+    const C=conj(w)[c.f];
+    pr=`<div class="jp">${w.k} ${spk(w.h)}</div><div class="mu">${[rd(w),w.m].filter(Boolean).join(" · ")}</div><div class="fm">${FN[c.f]}?</div>`;
+    const d=[...sh(wrongs(w,c.f)),...sh(Object.entries(conj(w)).filter(e=>e[0]!=c.f).map(e=>e[1]))].filter((x,j,a)=>x!=C&&a.indexOf(x)==j).slice(0,3);
+    opts=sh([C,...d]).map(x=>({h:x,ok:x==C}));ans=[C];show=C;sp=C;lab=w.k;
+  }else{
+    const sim=x=>(x.h==w.h?3:0)+[...w.k].filter(ch=>ch>"一"&&x.k.includes(ch)).length*2;
+    const jpq=mode=="jp"&&!tp;
+    const cand=src().filter(x=>x.id!=w.id&&(jpq?x.m!=w.m:x.k+x.h!=w.k+w.h));
+    const near=sh(cand).sort((a,b)=>sim(b)-sim(a)).filter(x=>sim(x)>0).slice(0,2);
+    const d=[...near,...sh(cand.filter(x=>!near.includes(x)))].slice(0,3);
+    const fw=disp(w);
+    pr=jpq?`<div class="jp">${fw.k.replace(" / ","<br>")} ${spk(fw.s||fw.h)}</div><div class="mu">${rd(fw).replace(" / ","<br>")}</div>`:`<div class="en">${w.m}</div>${w.t=="v"?`<div class="fm">ます-form + て-form</div>`:""}`;
+    opts=sh([w,...d]).map(o=>{const x=disp(o);return{h:jpq?o.m:`<b>${x.k}</b> <small>${rd(x)}</small>`,ok:o.id==w.id}});
+    ans=fw.a;show=`${fw.k}${fw.h!=fw.k?" ("+fw.h+")":""}`;sp=fw.s||fw.h;lab=fw.k;
+  }
+  Q={c,w,opts,ans,show,tp,sp,lab};
+  nav(false);
+  app.innerHTML=`<div class="qrow"><button class="lnk" id="qt">Quit</button>${timed?`<button class="lnk" id="ps">Pause</button>`:""}</div><div class="top"><span>${c.rq?"Retry · ":""}Question ${Math.min(i+1,q.length)} / ${q.length}</span><span>Score ${sc}/${tot}${timed?` · <b id="tm">${secs}s</b>`:""}</span></div>
+  <div class="bar"><i style="width:${i/q.length*100}%"></i></div>
+  <div class="q" id="qb">${pr}</div>
+  <div id="ob">${tp?`<input class="ti" id="ti" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${w.t=="v"&&mode!="cj"?"ます-form て-form (kana)":"type in kana"}"><button class="pri" id="ck">Check</button>`:opts.map((o,n)=>`<button class="opt">${n+1}. ${o.h}</button>`).join("")}</div><div id="nx"></div>`;
+  if(tp){$("#ti").focus();$("#ck").onclick=sub;$("#ti").onkeydown=e=>{if(e.key=="Enter"){e.stopPropagation();sub()}}}
+  else document.querySelectorAll(".opt").forEach((b,n)=>b.onclick=()=>finish(opts[n].ok,false,n));
+  $("#qt").onclick=()=>{clearInterval(tm);home()};
+  if(timed){left=secs;tick();$("#ps").onclick=()=>{if(locked)return;paused=!paused;$("#ps").textContent=paused?"Resume":"Pause";[$("#qb"),$("#ob")].forEach(e=>e.style.visibility=paused?"hidden":"");paused?clearInterval(tm):tick()}}
+}
+const tick=()=>{clearInterval(tm);tm=setInterval(()=>{left--;const t=$("#tm");if(t)t.textContent=left+"s";if(left<=0)finish(false,true)},1000)};
+function sub(){if(locked)return;const v=norm($("#ti").value);if(!v)return;finish(Q.ans.map(norm).includes(v),false)}
+function finish(ok,soft,idx){
+  if(locked||paused)return;locked=true;clearInterval(tm);
+  const{c,w,opts,ans,show,tp,sp,lab}=Q;
+  if(tp){const ti=$("#ti");ti.disabled=true;ti.className="ti "+(ok?"ok":"no");$("#ck").style.display="none"}
+  else document.querySelectorAll(".opt").forEach((b,n)=>{if(opts[n].ok)b.classList.add("ok");else if(n===idx)b.classList.add("no")});
+  rec(w,ok,soft);
+  if(ok&&!c.rq)sc++;
+  if(!ok&&!c.rq){miss.push(w);q.splice(Math.min(i+4,q.length),0,{w,f:c.f,vf:c.vf,rq:1})}
+  const e=D[w.id];
+  $("#nx").innerHTML=`<div class="mu" style="text-align:center;margin-top:12px">${soft?"Time's up · ":""}${!ok&&tp?"Answer: <b>"+show+"</b> · ":""}${lab} ${fm(e.s)} · review ${due(e)} ${spk(sp)}</div><button class="pri" id="n">${i+1<q.length?"Next":"See results"}</button>`;
+  $("#n").onclick=next;
+  if(aud)say(sp);
+}
+function next(){i++;i<q.length?ask():done()}
+function done(){
+  nav(true,"home");scrollTo(0,0);
+  app.innerHTML=`<h1>Results</h1><div class="score">${sc} / ${tot}</div><div class="mu" style="text-align:center">${sc==tot?"Perfect round!":miss.length+" to review"}</div>
+  ${miss.map(w=>`<div class="row"><span>${w.k} <small class="mu">${w.h!=w.k?w.h:""}</small></span><span>${w.m}</span></div>`).join("")}
+  <button class="pri" id="again">Smart review</button>${miss.length?`<button class="sec" id="rm">Retry missed words</button>`:""}<button class="lnk" id="hm">Back to menu</button>`;
+  $("#again").onclick=review;if(miss.length)$("#rm").onclick=()=>start(miss);$("#hm").onclick=home;
+}
+function progress(){
+  nav(true,"pg");scrollTo(0,0);
+  const t=Date.now(),seen=Object.keys(D).length,dn=W.filter(w=>D[w.id]&&D[w.id].d<=t).length,ms=W.filter(w=>D[w.id]&&D[w.id].b>=4).length;
+  const days=[];for(let k=6;k>=0;k--){const d=new Date(t-k*DAY).toLocaleDateString("sv");days.push([d.slice(5),ST.days[d]||[0,0]])}
+  const L=W.slice().sort((a,b)=>sc0(a)-sc0(b));
+  app.innerHTML=`<h1>Progress</h1>
+  <div class="cards"><div><b>${streak()}</b><small>day streak</small></div><div><b>${dn}</b><small>due now</small></div><div><b>${ms}</b><small>mastered</small></div><div><b>${seen}/${W.length}</b><small>seen</small></div></div>
+  <div class="mu">Last 7 days · correct / answered</div>
+  <div class="spark">${days.map(([d,x])=>`<div><i style="height:${x[0]?Math.max(6,x[1]/x[0]*60):2}px"></i><small>${d}</small><small>${x[0]?x[1]+"/"+x[0]:"–"}</small></div>`).join("")}</div>
+  <div class="mu" style="margin:12px 0 4px">Weakest first · right +1 · wrong −0.5 · mastered = 4+ correct in a row</div>
+  ${L.map(w=>{const e=D[w.id],c=!e?"var(--mu)":e.s<0?"var(--no)":e.b>=4?"var(--ok)":"var(--tx)";return`<div class="row" data-w="${w.id}"><span>${w.k} <small class="mu">${w.h!=w.k?w.h:""}</small><br><small class="mu">${w.m}</small></span><span style="color:${c}"><b>${e?fm(e.s):"new"}</b><br><small>${e?due(e):""}</small></span></div>`}).join("")}`;
+}
+function backup(){
+  nav(true,"st");scrollTo(0,0);
+  app.innerHTML=`<h1>Backup</h1><div class="mu">Copy this code and keep it safe. Paste it on any device to restore your progress.</div><textarea id="bk" readonly>${btoa(JSON.stringify({D,ST}))}</textarea><button class="sec" id="cp">Copy code</button>
+  <div class="mu" style="margin-top:20px">Restore from a code (replaces current progress):</div><textarea id="rs" placeholder="Paste code here"></textarea><button class="sec" id="rr">Restore</button><div class="mu" id="msg"></div><button class="lnk" id="hm">Back</button>`;
+  const m=t=>$("#msg").textContent=t;
+  $("#cp").onclick=()=>{const t=$("#bk");t.select();try{navigator.clipboard.writeText(t.value).then(()=>m("Copied."),()=>m("Select the text and copy it manually."))}catch(e){m("Select the text and copy it manually.")}};
+  $("#rr").onclick=()=>{try{const o=JSON.parse(atob($("#rs").value.trim()));if(!o.D)throw 0;D=o.D;ST=Object.assign({days:{}},o.ST);save();m("Restored "+Object.keys(D).length+" words.")}catch(e){m("That code didn't work.")}};
+  $("#hm").onclick=settings;
+}
+function card(id){
+  const w=W[id],e=D[id],x=EX[w.k],c=w.t=="v"?conj(w):null,ck=w.t=="v"?conj(w,true):null;
+  let o=$("#fc");if(!o){o=document.createElement("div");o.id="fc";document.body.appendChild(o)}
+  o.innerHTML=`<div class="fcb"><button class="x" id="fx" aria-label="Close">${IC.x}</button>
+  <div class="jp">${w.k}</div><div class="mu">${w.h!=w.k?w.h:""} ${spk(w.h)}</div>
+  <div class="en" style="margin-top:10px">${w.m}</div>
+  ${c?`<div class="forms">${["masu","te","nai"].map(f=>`<span>${ck[f]}${ck[f]!=c[f]?`<small>${c[f]}</small>`:""}</span>`).join("")}</div><div class="mu">ます · て · ない</div>`:""}
+  ${x?`<div class="ex"><div class="mu">Example</div><div class="exj">${fur(x[0])} ${spk(pl(x[0]))}</div><div class="mu">${x[1]}</div></div>`:""}
+  <div class="mu" style="margin-top:14px">${e?"Score "+fm(e.s)+" · review "+due(e):"Not practiced yet"}</div></div>`;
+  o.style.display="flex";o.onclick=ev=>{if(ev.target===o||ev.target.closest("#fx"))o.style.display="none"};
+}
+document.addEventListener("click",e=>{const s=e.target.closest("[data-say]");if(s)return say(s.dataset.say);const r=e.target.closest("[data-w]");if(r)card(+r.dataset.w)});
+document.addEventListener("keydown",e=>{
+  if(e.key=="Escape"){const o=$("#fc");if(o)o.style.display="none"}
+  if(paused)return;
+  const bs=document.querySelectorAll(".opt");
+  if(bs.length&&!locked&&e.key>="1"&&e.key<="4"){bs[+e.key-1]&&bs[+e.key-1].click()}
+  else if(e.key=="Enter"&&locked&&$("#n")){e.preventDefault();$("#n").click()}
+});
+home();
+</script></body></html>
